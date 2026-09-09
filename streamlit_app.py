@@ -17,10 +17,19 @@ import streamlit as st
 from PIL import Image
 from ultralytics import YOLO
 
-sys.path.append(str(Path(__file__).resolve().parent.parent))
+THIS_DIR = Path(__file__).resolve().parent
+
+# Support both layouts: streamlit_app.py at repo root, or inside app/.
+# Whichever directory actually contains src/ is the repo root.
+if (THIS_DIR / "src").exists():
+    REPO_ROOT = THIS_DIR
+else:
+    REPO_ROOT = THIS_DIR.parent
+
+sys.path.append(str(REPO_ROOT))
 from src.stock_insights import build_stock_report, restocking_priority  # noqa: E402
 
-MODEL_PATH = Path(__file__).resolve().parent.parent / "models" / "best.pt"
+MODEL_PATH = REPO_ROOT / "models" / "best.pt"
 
 STATUS_COLORS = {
     "Out of Stock": "#e74c3c",  # red

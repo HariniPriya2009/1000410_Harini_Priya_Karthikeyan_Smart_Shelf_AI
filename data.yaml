@@ -1,0 +1,14 @@
+# YOLO dataset config for StockSense Pro
+# Update 'names' after running src/prepare_dataset.py (it prints the final list)
+
+path: data
+train: train/images
+val: val/images
+test: test/images
+
+names:
+  0: category_1
+  1: category_2
+  2: category_3
+  3: category_4
+  4: category_5
